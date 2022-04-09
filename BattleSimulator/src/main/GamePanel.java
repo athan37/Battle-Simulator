@@ -54,8 +54,8 @@ public class GamePanel extends JPanel implements Runnable {
 	 * Set the descriptions for the game panel
 	 * The game panel displays the characters and possible weapons that are available
 	 * to choose. 
-	 * @param heroWeapons
-	 * @param threeChars
+	 * @param heroWeapons — the weapons the heroes will use
+	 * @param threeChars — the characters that will fight
 	 */
 	public GamePanel(String[] heroWeapons, int[] threeChars) {
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -73,6 +73,10 @@ public class GamePanel extends JPanel implements Runnable {
 		setUpCharacters();
 	}
 	
+	/**
+	 * Set up the positions for each of the characters on the panel.
+	 * Uses a hash map by generating all possible permutations of positions. 
+	 */
 	public void setUpAllCharacterPositions() {
 		allCharacterPosition = new HashMap<>();
 		//Set up hash map. Basically generate all permutations with 2 for loops
@@ -85,6 +89,12 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * Method used to check which characters are still alive. 
+	 * If the hero is alive, add it to the new hero list, and 
+	 * update this.heroes with the new hero list.
+	 * Repeat for the list of bad guys. 
+	 */
 	public void updateCharacters() {
 		ArrayList<Character> newHeroList = new ArrayList<>();
 		for (Character character : heros) {
@@ -103,6 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
 		this.badGuys = newBadGuyList;
 		this.update();
 	}
+	
 	
 	private void setUpPosition() {
 		 positions =  new int[][] {{6,2}, {7, 4}, {8, 2}, {7, 11}, {6, 13}, {8, 13}};
@@ -127,6 +138,9 @@ public class GamePanel extends JPanel implements Runnable {
 		 };
 	}
 	
+	/**
+	 * Sets up the characters in their respective positions with appropriate titles. 
+	 */
 	public void setUpCharacters() {
 		 setUpPosition();
 		 heros   = new ArrayList<>();
@@ -153,7 +167,11 @@ public class GamePanel extends JPanel implements Runnable {
 		 
 	}
 	
-	
+	/**
+	 * Initiates the battle.
+	 * If the animator is null or not running,
+	 * creates a new thread and calls startBattle() and animator.start() 
+	 */
 	public void startGame() {
 		if (animator == null || !running) {
 			animator = new Thread(this);
@@ -166,18 +184,37 @@ public class GamePanel extends JPanel implements Runnable {
 		running = true;
 	}
 	
+	/**
+	 * Two options for pausing or stopping the game.
+	 * Tries pausing the game by putting the thread to sleep
+	 * for the given duration, catches an interrupted exception
+	 * and prints the stack trace. 
+	 * @param duration
+	 */
 	public void stopGame(int duration) {
 		try {
 			Thread.sleep(duration);
-		} catch (InterruptedException e) {
+		} 
+		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Changes status of running to false. 
+	 */
 	public void stopGame() {
 		running = false;
 	}
 	
+	/**
+	 * Runs for as long as the number of heroes and number of bad guys is above 0.
+	 * Once one of the teams loses all members, game ends.
+	 * Runs through each hero and displays the attack that they execute. 
+	 * Then, performs each of the heroes' attacks. 
+	 * Then, performs the bad guys' attacks in response. 
+	 * Updates the character lists at the end of each round. 
+	 */
 	public void startBattle() {
 		//Perform update after each attack
 		while(heros.size() > 0 && badGuys.size() > 0) {
@@ -248,13 +285,14 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * Sets the graphics for the game. 
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setBackground(Color.white);
 		g2.setColor(Color.WHITE);
-		
-		
 		
 		for (Character hero: heros)  {
 			hero.draw(g2);
@@ -265,8 +303,6 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 		
 		ui.draw(g2);
-		
-		
 		g2.dispose();
 	}
 
