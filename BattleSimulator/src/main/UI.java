@@ -15,12 +15,12 @@ import javax.swing.JButton;
 import static constant.GameConstant.*;
 
 public class UI {
-	GamePanel gp;
-	Font arial_40;
-	public boolean messageOn = false;
-	public boolean gameFinished = false;
-	public String message = "";
-	Graphics2D g2;
+	private GamePanel gp;
+	private Font arial_40;
+	private boolean messageOn = false;
+	private boolean gameFinished = false;
+	private String message = "";
+	private Graphics2D g2;
 	
 	
 	public UI(GamePanel gp) {
@@ -42,19 +42,19 @@ public class UI {
 		g2.setFont(arial_40);
 		g2.setColor(Color.white);
 		
-		if (gp.gameState == GameState.PLAY_STATE) {
+		if (gp.getGameState() == GameState.PLAY_STATE) {
 			
 		}
-		else if (gp.gameState == GameState.SELECT_STATE) {
+		else if (gp.getGameState() == GameState.SELECT_STATE) {
 //			drawPauseScreen();
 //			setUpCharacterSelectionScreen();
 //			drawCharacterSelectionPanel(g2);
-		} else if(gp.gameState == GameState.DIALOGUE_STATE) {
+		} else if(gp.getGameState() == GameState.DIALOGUE_STATE) {
 			drawDialougeScreen(g2);
 		}
 		
 		if (gameFinished) {
-			g2.drawString(gp.badGuys.size() == 0 ? "Hero won" : "Bad guy won", 50, 50);
+			g2.drawString(gp.getBadGuys().size() == 0 ? "Hero won" : "Bad guy won", 50, 50);
 			return;
 		}
 		
@@ -95,5 +95,91 @@ public class UI {
 		// TODO Auto-generated method stub
 		
 	}
+
+	/**
+	 * @return the gp
+	 */
+	public GamePanel getGp() {
+		return gp;
+	}
+
+	/**
+	 * @param gp the gp to set
+	 */
+	public void setGp(GamePanel gp) {
+		this.gp = gp;
+	}
+
+	/**
+	 * @return the arial_40
+	 */
+	public Font getArial_40() {
+		return arial_40;
+	}
+
+	/**
+	 * @param arial_40 the arial_40 to set
+	 */
+	public void setArial_40(Font arial_40) {
+		this.arial_40 = arial_40;
+	}
+
+	/**
+	 * @return the messageOn
+	 */
+	public boolean isMessageOn() {
+		return messageOn;
+	}
+
+	/**
+	 * @param messageOn the messageOn to set
+	 */
+	public void setMessageOn(boolean messageOn) {
+		this.messageOn = messageOn;
+	}
+
+	/**
+	 * @return the gameFinished
+	 */
+	public boolean isGameFinished() {
+		return gameFinished;
+	}
+
+	/**
+	 * @param gameFinished the gameFinished to set
+	 */
+	public void setGameFinished(boolean gameFinished) {
+		this.gameFinished = gameFinished;
+	}
+
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	/**
+	 * @return the g2
+	 */
+	public Graphics2D getG2() {
+		return g2;
+	}
+
+	/**
+	 * @param g2 the g2 to set
+	 */
+	public void setG2(Graphics2D g2) {
+		this.g2 = g2;
+	}
+	
+	
 	
 }

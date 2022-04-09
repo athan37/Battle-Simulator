@@ -30,7 +30,6 @@ public class CharacterSelection extends JPanel implements Runnable {
 	private String[]  heroWeapons;
 	private int[] threeChars = {0, 0, 0};
 	private HashMap<Integer, int[]> allCharacterPosition;
-	GameFrame frame;
 	
 	
 	public CharacterSelection() {

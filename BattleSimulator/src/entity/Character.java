@@ -24,25 +24,34 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 public abstract class Character extends Entity {
 	protected String name;
-	protected int strength;
-	protected int maxHp, hp;
-	protected int mana, maxMana = 100;
 	protected Rectangle healthBar, manaBar;
 	protected boolean isHero;
-	protected GamePanel gp;
 	protected boolean alive = true;
+	protected GamePanel gp;
 	protected Weapon weapon;
 	protected Queue<Shape> appliedEffects; 
 	protected ArrayList<BufferedImage> ims;
+	protected int strength;
+	protected int maxHp, hp;
+	protected int mana, maxMana = 100;
 	protected int spriteCount;
 	protected int spriteStart;
 	protected int spriteEnd;
 	protected int spriteNum;
 	protected int[] characterSet;
-	public AttackType attackType;
+	protected AttackType attackType;
 	
-	//32 characters, each character has 16 imgs
-	//Free assets from https://noiracide.itch.io/
+	/**
+	 * Load 12 sprite images of a character
+	 * Each sprite has height 60px, and width 48 px
+	 * 32 characters, each character has 16 imgs
+	 * Free assets from https://noiracide.itch.io
+	 * @param filepath
+	 * @param row
+	 * @param col
+	 * @return An array of 12 sprite images
+	 * @throws IOException
+	 */
 	public  ArrayList<BufferedImage> loadCharactersImage(String filepath, int row, int col) throws IOException {
 		BufferedImage im = ImageIO.read(getClass().getResource(filepath));
 
@@ -68,6 +77,10 @@ public abstract class Character extends Entity {
 		return ims;
 	}
 	
+	/**
+	 * Set the sprites of this character
+	 * @param file path of the sprites source
+	 */
 	public void setImg(String file) {
 		try {
 			loadCharactersImage(file, this.characterSet[0], this.characterSet[1]);
@@ -84,10 +97,14 @@ public abstract class Character extends Entity {
 	}
 
 	/**
-	 * @param mana the mana to set
+	 * @param the mana to set
 	 */
 	public void setMana(int mana) {
 		this.mana = Math.max(mana, 0);
+	}
+	
+	public void setMaxMana(int mana) {
+		this.maxMana = Math.max(mana, 0);
 	}
 
 	/**
@@ -98,7 +115,7 @@ public abstract class Character extends Entity {
 	}
 
 	/**
-	 * @param appliedEffects the appliedEffects to set
+	 * @param the appliedEffects to set
 	 */
 	public void setAppliedEffects(Queue<Shape> appliedEffects) {
 		this.appliedEffects = appliedEffects;
@@ -167,7 +184,7 @@ public abstract class Character extends Entity {
 		gp.repaint();
 		
 		try {
-			Thread.sleep(500);
+			Thread.sleep(1500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -235,8 +252,8 @@ public abstract class Character extends Entity {
 		transformationEffects(target);
 		onTargetEffects(target);
 		
-		gp.ui.message = heroMessage + "Dealt " + totalDamage + " damage on " + target.name + ". ";
-		if (!target.alive) gp.ui.message += "Killed this guy.";
+		gp.getUi().setMessage(heroMessage + "Dealt " + totalDamage + " damage on " + target.name + ". ");
+		if (!target.alive) gp.getUi().setMessage(gp.getUi().getMessage() + "Killed this guy.");
 		gp.stopGame(2000);
 		gp.update();
 		
@@ -285,9 +302,9 @@ public abstract class Character extends Entity {
 		this.hp = hitPoint;
 	}
 	
-	public int getManaRatio() {
-		return 1;
-	}
+//	public int getManaRatio() {
+//		return 1;
+//	}
 	
 	public boolean isAlive() {
 		return alive;
@@ -336,6 +353,11 @@ public abstract class Character extends Entity {
 		g2.drawImage(ims.get(spriteNum), x, y, TILE_SIZE, TILE_SIZE, null);
 		
 	}
+	
+	public void setAttackType(AttackType attackType) {
+		this.attackType = attackType;
+	}
+	
 
 	
 }

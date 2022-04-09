@@ -8,21 +8,20 @@ import static constant.GameConstant.*;
 import java.util.Random;
 
 public class Hero extends Character {
-	public int mana, maxMana;
 	public Hero(GamePanel gp, String name, int strength, int hitPoint, int mana, Weapon weapon, int [] characterSet) {
 		super(gp, name, strength, hitPoint, characterSet);
 		this.weapon = weapon;
-		this.mana   = mana;
+		setMaxMana(mana);
 		this.spriteNum  = this.spriteStart = 6;
 		this.spriteEnd  = this.spriteStart + 3; //Exclusive
 	}
 	
 	public void displaySelectAttack() {
-		gp.ui.message = "Hero name: " + this.getName() + "\n" 
+		gp.getUi().setMessage("Hero name: " + this.getName() + "\n" 
 				+ "(Q) Normal attack \n"
 				+ "(W) Special attack \n "
-				+ "(E) Special attack with weapon";
-		gp.gameState = GameState.DIALOGUE_STATE;
+				+ "(E) Special attack with weapon");
+		gp.setGameState(GameState.DIALOGUE_STATE);
 		gp.update();
 	}
 	
@@ -43,8 +42,8 @@ public class Hero extends Character {
 	@Override
 	public Character chooseTarget() {
 		selectAttack();
-		if (gp.badGuys.size() == 0) return null;
-		BadGuy target = (BadGuy) gp.badGuys.get(new Random().nextInt(gp.badGuys.size()));
+		if (gp.getBadGuys().size() == 0) return null;
+		BadGuy target = (BadGuy) gp.getBadGuys().get(new Random().nextInt(gp.getBadGuys().size()));
 		return target;
 	}
 	

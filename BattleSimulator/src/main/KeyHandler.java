@@ -20,18 +20,16 @@ public class KeyHandler implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_Q:
-			gp.currentHero.attackType = AttackType.NORMAL;
-			gp.continueGame();
+			gp.getCurrentHero().setAttackType(AttackType.NORMAL);
 			break;
 		case KeyEvent.VK_W:
-			gp.currentHero.attackType = AttackType.SPECIAL;
-			gp.continueGame();
+			gp.getCurrentHero().setAttackType(AttackType.SPECIAL);
 			break;
 		case KeyEvent.VK_E:
-			gp.currentHero.attackType = AttackType.SPECIAL_WITH_WEAPON;
-			gp.continueGame();
+			gp.getCurrentHero().setAttackType(AttackType.SPECIAL_WITH_WEAPON);
 			break;
 		}
+		gp.continueGame();
 		
 	}
 

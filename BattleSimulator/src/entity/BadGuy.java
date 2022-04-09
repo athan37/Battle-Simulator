@@ -2,13 +2,14 @@ package entity;
 
 import java.util.Random;
 
+
 import main.GamePanel;
 import main.GameState;
 
 import static constant.GameConstant.*;
 
 public class BadGuy extends Character {
-	public String speech;
+	private String speech;
 
 	public BadGuy(GamePanel gp, String name, int strength, int hitPoint, int[] characterSet, String speech) {
 		super(gp, name, strength, hitPoint, characterSet);
@@ -18,10 +19,10 @@ public class BadGuy extends Character {
 	}
 	
 	public void speak() {
-		gp.ui.message = this.speech;
-		gp.gameState = GameState.DIALOGUE_STATE;
+		gp.getUi().setMessage(speech);
+		gp.setGameState(GameState.DIALOGUE_STATE);
 		gp.update();
-		gp.stopGame(gp.ui.message.split(" ").length * TIME_PER_WORD_IN_MILLIS);
+		gp.stopGame(gp.getUi().getMessage().split(" ").length * TIME_PER_WORD_IN_MILLIS);
 	}
 	
 	@Override
@@ -45,8 +46,9 @@ public class BadGuy extends Character {
 	@Override
 	public Character chooseTarget() {
 		speak();
-		if (gp.heros.size() == 0) return null;
-		Hero target = (Hero) gp.heros.get(new Random().nextInt(gp.heros.size()));
+		int numberOfHeros = gp.getHeros().size();
+		if (numberOfHeros == 0) return null;
+		Hero target = (Hero) gp.getHeros().get(new Random().nextInt(numberOfHeros));
 		return target;
 	}
 
@@ -61,6 +63,7 @@ public class BadGuy extends Character {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	
 
 }

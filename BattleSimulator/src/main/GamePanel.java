@@ -32,19 +32,19 @@ public class GamePanel extends JPanel implements Runnable {
 	//Epic battle screen
 	
 	private int[][] positions;
+	private int[] threeChars;
 	private Weapon[] weapons;
 	
-	public ArrayList<Character> heros;
-	public ArrayList<Character> badGuys;
+	private ArrayList<Character> heros;
+	private ArrayList<Character> badGuys;
 	private Thread animator;
 	private volatile boolean running = false; //Volatile for thread safe
 	private KeyListener keyListener = new KeyHandler(this);
-	public UI ui = new UI(this);
-	public GameState gameState;
-	public Hero currentHero;
+	private UI ui = new UI(this);
+	private GameState gameState;
+	private Hero currentHero;
 	
 	private String[] heroWeapons;
-	private int[] threeChars;
 	private HashMap<Integer, int[]> allCharacterPosition;
 	
 	public Sound sound = new Sound();
@@ -198,7 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 		}
 		
-		this.ui.message = heros.size() == 0 ? "Bad guy won" : "Hero won";
+		this.ui.setMessage(heros.size() == 0 ? "Bad guy won" : "Hero won");
 		this.update();
 	}
 
@@ -285,6 +285,203 @@ public class GamePanel extends JPanel implements Runnable {
 		sound.setFile(i);
 		sound.play();
 	}
+
+	/**
+	 * @return the positions
+	 */
+	public int[][] getPositions() {
+		return positions;
+	}
+
+	/**
+	 * @param positions the positions to set
+	 */
+	public void setPositions(int[][] positions) {
+		this.positions = positions;
+	}
+
+	/**
+	 * @return the weapons
+	 */
+	public Weapon[] getWeapons() {
+		return weapons;
+	}
+
+	/**
+	 * @param weapons the weapons to set
+	 */
+	public void setWeapons(Weapon[] weapons) {
+		this.weapons = weapons;
+	}
+
+	/**
+	 * @return the heros
+	 */
+	public ArrayList<Character> getHeros() {
+		return heros;
+	}
+
+	/**
+	 * @param heros the heros to set
+	 */
+	public void setHeros(ArrayList<Character> heros) {
+		this.heros = heros;
+	}
+
+	/**
+	 * @return the badGuys
+	 */
+	public ArrayList<Character> getBadGuys() {
+		return badGuys;
+	}
+
+	/**
+	 * @param badGuys the badGuys to set
+	 */
+	public void setBadGuys(ArrayList<Character> badGuys) {
+		this.badGuys = badGuys;
+	}
+
+	/**
+	 * @return the animator
+	 */
+	public Thread getAnimator() {
+		return animator;
+	}
+
+	/**
+	 * @param animator the animator to set
+	 */
+	public void setAnimator(Thread animator) {
+		this.animator = animator;
+	}
+
+	/**
+	 * @return the running
+	 */
+	public boolean isRunning() {
+		return running;
+	}
+
+	/**
+	 * @param running the running to set
+	 */
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	/**
+	 * @return the keyListener
+	 */
+	public KeyListener getKeyListener() {
+		return keyListener;
+	}
+
+	/**
+	 * @param keyListener the keyListener to set
+	 */
+	public void setKeyListener(KeyListener keyListener) {
+		this.keyListener = keyListener;
+	}
+
+	/**
+	 * @return the ui
+	 */
+	public UI getUi() {
+		return ui;
+	}
+
+	/**
+	 * @param ui the ui to set
+	 */
+	public void setUi(UI ui) {
+		this.ui = ui;
+	}
+
+	/**
+	 * @return the gameState
+	 */
+	public GameState getGameState() {
+		return gameState;
+	}
+
+	/**
+	 * @param gameState the gameState to set
+	 */
+	public void setGameState(GameState gameState) {
+		this.gameState = gameState;
+	}
+
+	/**
+	 * @return the currentHero
+	 */
+	public Hero getCurrentHero() {
+		return currentHero;
+	}
+
+	/**
+	 * @param currentHero the currentHero to set
+	 */
+	public void setCurrentHero(Hero currentHero) {
+		this.currentHero = currentHero;
+	}
+
+	/**
+	 * @return the heroWeapons
+	 */
+	public String[] getHeroWeapons() {
+		return heroWeapons;
+	}
+
+	/**
+	 * @param heroWeapons the heroWeapons to set
+	 */
+	public void setHeroWeapons(String[] heroWeapons) {
+		this.heroWeapons = heroWeapons;
+	}
+
+	/**
+	 * @return the threeChars
+	 */
+	public int[] getThreeChars() {
+		return threeChars;
+	}
+
+	/**
+	 * @param threeChars the threeChars to set
+	 */
+	public void setThreeChars(int[] threeChars) {
+		this.threeChars = threeChars;
+	}
+
+	/**
+	 * @return the allCharacterPosition
+	 */
+	public HashMap<Integer, int[]> getAllCharacterPosition() {
+		return allCharacterPosition;
+	}
+
+	/**
+	 * @param allCharacterPosition the allCharacterPosition to set
+	 */
+	public void setAllCharacterPosition(HashMap<Integer, int[]> allCharacterPosition) {
+		this.allCharacterPosition = allCharacterPosition;
+	}
+
+	/**
+	 * @return the sound
+	 */
+	public Sound getSound() {
+		return sound;
+	}
+
+	/**
+	 * @param sound the sound to set
+	 */
+	public void setSound(Sound sound) {
+		this.sound = sound;
+	}
+	
 	
 	
 
