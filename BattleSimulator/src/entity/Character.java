@@ -247,7 +247,11 @@ public abstract class Character extends Entity {
 			heroMessage = this.weapon.getClass().getName().substring("entity.".length()) + " " + heroMessage;
 			target.setHitPoint(target.getHitPoint() - totalDamage);
 		}
-		else target.setHitPoint(target.getHitPoint() - this.attacks());
+		else {
+			target.setHitPoint(target.getHitPoint() - this.attacks());
+			gp.playSE(4);
+		}
+		
 		
 		transformationEffects(target);
 		onTargetEffects(target);

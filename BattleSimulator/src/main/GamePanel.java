@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 
@@ -8,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -17,7 +20,10 @@ import java.util.HashMap;
 import static constant.GameConstant.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import entity.Hero;
@@ -48,6 +54,9 @@ public class GamePanel extends JPanel implements Runnable {
 	private HashMap<Integer, int[]> allCharacterPosition;
 	
 	public Sound sound = new Sound();
+	
+	//private Image img = Toolkit.getDefaultToolkit().getImage("E:\\background_9.jpg");
+	
 	
 	
 	/**
