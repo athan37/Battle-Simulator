@@ -30,6 +30,7 @@ import entity.Character;
 
 public class GamePanel extends JPanel implements Runnable {
 	//Epic battle screen
+	
 	private int[][] positions;
 	private Weapon[] weapons;
 	
@@ -46,6 +47,16 @@ public class GamePanel extends JPanel implements Runnable {
 	private int[] threeChars;
 	private HashMap<Integer, int[]> allCharacterPosition;
 	
+	public Sound sound = new Sound();
+	
+	
+	/**
+	 * Set the descriptions for the game panel
+	 * The game panel displays the characters and possible weapons that are available
+	 * to choose. 
+	 * @param heroWeapons
+	 * @param threeChars
+	 */
 	public GamePanel(String[] heroWeapons, int[] threeChars) {
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.BLACK);
@@ -258,5 +269,23 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		g2.dispose();
 	}
+
+	
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	
+	public void stopMusic() {
+		sound.stop();
+	}
+	
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
+	}
+	
+	
 
 }

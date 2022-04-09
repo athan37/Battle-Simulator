@@ -214,14 +214,17 @@ public abstract class Character extends Entity {
 			case NORMAL:
 				totalDamage = this.attacks();
 				heroMessage = "Normal attack.\n";
+				gp.playSE(1);
 				break;
 			case SPECIAL:
 				totalDamage = this.attacksWithWeapon();
 				heroMessage = "Special attack.\n";
+				gp.playSE(2);
 				break;
 			case SPECIAL_WITH_WEAPON:
 				totalDamage = this.specAttackWithWeapon();
 				heroMessage = "Special attack with weapon.\n";
+				gp.playSE(3);
 				break;
 			}
 			heroMessage = this.weapon.getClass().getName().substring("entity.".length()) + " " + heroMessage;
@@ -232,7 +235,7 @@ public abstract class Character extends Entity {
 		transformationEffects(target);
 		onTargetEffects(target);
 		
-		gp.ui.message = heroMessage + "Dealed " + totalDamage + " damage on " + target.name + ". ";
+		gp.ui.message = heroMessage + "Dealt " + totalDamage + " damage on " + target.name + ". ";
 		if (!target.alive) gp.ui.message += "Killed this guy.";
 		gp.stopGame(2000);
 		gp.update();
@@ -276,6 +279,7 @@ public abstract class Character extends Entity {
 		if (hitPoint <= 0) {
 			hitPoint = 0;
 			alive = false;
+			gp.playSE(0);
 			gp.updateCharacters();
 		}
 		this.hp = hitPoint;
