@@ -1,3 +1,7 @@
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
+
 package main;
 
 import java.awt.CardLayout;
@@ -32,6 +36,10 @@ public class CharacterSelection extends JPanel implements Runnable {
 	private HashMap<Integer, int[]> allCharacterPosition;
 	
 	
+	/**
+	 * Constructor for the character selection. 
+	 * Sets all of the options, and the screen that allows the user to pick the characters. 
+	 */
 	public CharacterSelection() {
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 //		this.setBackground(Color.BLACK);
@@ -44,12 +52,19 @@ public class CharacterSelection extends JPanel implements Runnable {
 		
 	}
 	
+	/**
+	 * Method that starts the animator that allows the user to select characters. 
+	 * Begins a new thread. 
+	 */
 	public void startSelection() {
 		this.animator = new Thread(this);
 		this.animator.start();
 		
 	}
 	
+	/**
+	 * Method that sets up the screen that allows the user to select characters. 
+	 */
 	public void setUpCharacterSelectionScreen() {
 		this.imagePath = "/character/atlas_48x.png";
 		
@@ -61,6 +76,10 @@ public class CharacterSelection extends JPanel implements Runnable {
 		this.setLayout(null);
 	}
 	
+	/**
+	 * Method that sets up the start button.
+	 * Start button initializes the game. 
+	 */
 	public void setUpStartButton() {
 		startButton = new JButton("Start"); 
 		startButton.setBounds(
@@ -84,7 +103,9 @@ public class CharacterSelection extends JPanel implements Runnable {
 	}
 	
 	/**
-	 * Sets up an array list that corresponds to the avatars being used and their positions. 
+	 * Method that sets up an array list that corresponds to the 
+	 * avatars being used and their positions. Uses a for loop to iterate through the possible
+	 * avatars, and then adds them to the character avatar list. 
 	 */
 	public void setUpDefaultAvatars() {
 		this.characterAvatar = new ArrayList<>();
@@ -110,6 +131,10 @@ public class CharacterSelection extends JPanel implements Runnable {
 	
 	/**
 	 * Sets up the weapon buttons for weapon selection. 
+	 * There are buttons that correspond to each possible weapon, the user can select
+	 * which weapon for each character. 
+	 * The characters are also displayed on the screen to help the user assign 
+	 * weapons properly. 
 	 */
 	public void setUpWeaponButtons() {
 		//3 for 3 heros

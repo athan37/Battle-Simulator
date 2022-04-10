@@ -1,3 +1,7 @@
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
+
 package main;
 
 import java.awt.BorderLayout;
@@ -123,7 +127,10 @@ public class GamePanel extends JPanel implements Runnable {
 		this.update();
 	}
 	
-	
+	/**
+	 * Sets up positions for all weapons
+	 * with their given positions. 
+	 */
 	private void setUpPosition() {
 		 positions =  new int[][] {{6,2}, {7, 4}, {8, 2}, {7, 11}, {6, 13}, {8, 13}};
 		 weapons = new Weapon[3];
@@ -189,6 +196,9 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * Method to continue the game, sets running equal to true. 
+	 */
 	public void continueGame() {
 		running = true;
 	}
@@ -283,12 +293,21 @@ public class GamePanel extends JPanel implements Runnable {
 		System.exit(0);
 	}
 	
+	/**
+	 * Updates the character list, iterating through all of the 
+	 * character in the list. 
+	 * @param list
+	 */
 	public void updateHelper(ArrayList<Character> list) {
 		for (Character character : list) {
 			character.update();
 		}
 	}
 
+	/**
+	 * Calls the helper method updateHelpter() to update
+	 * both the list of heroes and list of badGuys. 
+	 */
 	public void update() {
 		if (running) {
 			updateHelper(heros);
@@ -296,6 +315,11 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * Sets the background image for the game.
+	 * @param filepath
+	 * @return
+	 */
 	public BufferedImage loadBackground(String filepath) {
 		try {
 			BufferedImage im = ImageIO.read(getClass().getResource(filepath));

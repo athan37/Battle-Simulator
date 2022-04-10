@@ -1,3 +1,7 @@
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
+
 package main;
 
 import java.net.URL;

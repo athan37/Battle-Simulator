@@ -1,3 +1,7 @@
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
+
 package constant;
 
 import java.awt.Graphics2D;

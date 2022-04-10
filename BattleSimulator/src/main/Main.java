@@ -1,6 +1,8 @@
-package main;
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
 
-//Hello!
+package main;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

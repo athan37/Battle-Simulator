@@ -1,8 +1,16 @@
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
+
 package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Class to handle the key inputs during the game. Implements
+ * Java class KeyListener. 
+ */
 public class KeyHandler implements KeyListener {
 	GamePanel gp;
 	

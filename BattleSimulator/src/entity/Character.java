@@ -1,3 +1,7 @@
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
+
 package entity;
 
 import java.awt.Color;

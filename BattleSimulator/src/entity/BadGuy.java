@@ -1,3 +1,7 @@
+/**
+ * Team Members: Duc Anh Than & Mia Gates
+ */
+
 package entity;
 
 import java.util.Random;
@@ -11,6 +15,15 @@ import static constant.GameConstant.*;
 public class BadGuy extends Character {
 	private String speech;
 
+	/**
+	 * Bad guy constructor. Takes a number of parameter characteristics.  
+	 * @param gp
+	 * @param name
+	 * @param strength
+	 * @param hitPoint
+	 * @param characterSet
+	 * @param speech
+	 */
 	public BadGuy(GamePanel gp, String name, int strength, int hitPoint, int[] characterSet, String speech) {
 		super(gp, name, strength, hitPoint, characterSet);
 		this.spriteStart = this.spriteNum = 3;
@@ -18,6 +31,11 @@ public class BadGuy extends Character {
 		this.speech      = speech;
 	}
 	
+	/**
+	 * Method for the bad guy to speak. 
+	 * Sets the initial message and then the game state to a dialogue state.
+	 * Then updates, and stops game. 
+	 */
 	public void speak() {
 		gp.getUi().setMessage(speech);
 		gp.setGameState(GameState.DIALOGUE_STATE);
