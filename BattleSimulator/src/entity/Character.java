@@ -7,7 +7,6 @@ package entity;
 import java.awt.Color;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
@@ -390,12 +389,6 @@ public abstract class Character extends Entity {
 			g2.draw(new Ellipse2D.Float(x + TILE_SIZE/2, y, TILE_SIZE / 2, TILE_SIZE / 2));
 			this.appliedEffects.remove();
 		}
-		
-//		int i = 0;
-//		for (BufferedImage im : ims) {
-//			g2.drawImage(im, i * TILE_SIZE, 0, TILE_SIZE, TILE_SIZE, null);
-//			i++;
-//		}
 		
 		g2.drawImage(ims.get(spriteNum), x, y, TILE_SIZE, TILE_SIZE, null);
 		

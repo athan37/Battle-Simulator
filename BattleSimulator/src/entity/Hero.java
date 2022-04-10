@@ -7,8 +7,6 @@ package entity;
 import main.GamePanel;
 import main.GameState;
 
-import static constant.GameConstant.*;
-
 import java.util.Random;
 
 public class Hero extends Character {

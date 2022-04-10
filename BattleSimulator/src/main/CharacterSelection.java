@@ -4,14 +4,11 @@
 
 package main;
 
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +39,6 @@ public class CharacterSelection extends JPanel implements Runnable {
 	 */
 	public CharacterSelection() {
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-//		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
 		
 		this.setFocusable(true);
@@ -92,13 +88,6 @@ public class CharacterSelection extends JPanel implements Runnable {
 			Main.threeChars  = threeChars;
 			Main.choosing = false;
 			Main.window.dispose();
-			
-//			this.removeAll(); ////			animator.interrupt();
-//			GamePanel gp = new GamePanel();
-//			this.frame.setMainPanel(gp);
-//			gp.startGame();
-////			gp.update();
-//			
 		});
 	}
 	
@@ -333,6 +322,12 @@ public class CharacterSelection extends JPanel implements Runnable {
 		}
 	}
 
+	/**
+	 * Main selection loop. This will constantly repaint the 
+	 * screen according to the FPS
+	 * Code from the tutorial: 
+	 * https://www.youtube.com/watch?v=VpH33Uw-_0E
+	 */
 	@Override
 	public void run() {
 		double drawInterval = 1000000000 / FPS;

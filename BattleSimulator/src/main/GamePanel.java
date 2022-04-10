@@ -4,17 +4,11 @@
 
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 
-
-
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -24,10 +18,6 @@ import java.util.HashMap;
 import static constant.GameConstant.*;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import entity.Hero;
@@ -137,7 +127,6 @@ public class GamePanel extends JPanel implements Runnable {
 		 
 		 for (int i = 0; i < 3; i ++) {
 			 String weaponString = heroWeapons[i];
-			 System.out.println(weaponString);
 			 Weapon weapon = new Melee(20, 100);
 			 switch(weaponString) {
 			 case "Melee":
@@ -243,7 +232,7 @@ public class GamePanel extends JPanel implements Runnable {
 				currentHero.displaySelectAttack();
 				stopGame();
 				while (!running) {
-					System.out.println("Wating for input");
+					
 				}
 				hero.performAttack();
 				this.update();
@@ -263,6 +252,7 @@ public class GamePanel extends JPanel implements Runnable {
 	 * We can repeat the loop update() data and repaint() components here.
 	 * Uses a while loop to run for the duration of the game. Updates and repaints
 	 * while delta is greater or equal to 1. 
+	 * Reference: https://www.youtube.com/watch?v=VpH33Uw-_0E
 	 */
 	@Override
 	public void run() {

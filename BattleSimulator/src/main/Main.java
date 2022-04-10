@@ -4,13 +4,7 @@
 
 package main;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import static constant.GameConstant.*;
-
-import java.awt.CardLayout;
 
 public class Main {
 	static boolean choosing = true;

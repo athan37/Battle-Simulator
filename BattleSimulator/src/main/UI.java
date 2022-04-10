@@ -9,12 +9,6 @@ import java.awt.Color;
 import java.awt.BasicStroke;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
 
 import static constant.GameConstant.*;
 
@@ -50,9 +44,7 @@ public class UI {
 			
 		}
 		else if (gp.getGameState() == GameState.SELECT_STATE) {
-//			drawPauseScreen();
-//			setUpCharacterSelectionScreen();
-//			drawCharacterSelectionPanel(g2);
+			
 		} else if(gp.getGameState() == GameState.DIALOGUE_STATE) {
 			drawDialougeScreen(g2);
 		}
