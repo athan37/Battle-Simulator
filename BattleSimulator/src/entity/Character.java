@@ -121,6 +121,15 @@ public abstract class Character extends Entity {
 		this.appliedEffects = appliedEffects;
 	}
 
+	/**
+	 * Character constructor method. Sets the name, strength, hit points, and characterSet for the 
+	 * given character. Also sets their attack type and any applied effects. 
+	 * @param gp
+	 * @param name
+	 * @param strength
+	 * @param hitPoint
+	 * @param characterSet
+	 */
 	public Character(GamePanel gp, String name, int strength, int hitPoint, int[] characterSet) {
 		super();
 		this.name       = name;
@@ -139,6 +148,10 @@ public abstract class Character extends Entity {
 	
 	public abstract Character chooseTarget();
 	
+	/**
+	 * Applies transformation effects on the given character. 
+	 * @param target
+	 */
 	public void transformationEffects(Character target) {
 		int oX = this.x; 
 		int oY = this.y;
@@ -172,7 +185,11 @@ public abstract class Character extends Entity {
 		this.y = oY;
 	}
 	
-	//Create effect on the target
+	
+	/**
+	 * Create effect on the target, resets x and y of the target based on the effect. 
+	 * @param target
+	 */
 	public void onTargetEffects(Character target) {
 		
 		int goalX = target.x + TILE_SIZE/2; 
@@ -190,12 +207,21 @@ public abstract class Character extends Entity {
 		}
 	}
 	
-	//Dmg = Base dmg + weapon dmg
-	//If weapon lose durability, Dmg = Base dmg
-	//Normal calculation like this is applied to bad guys.
+	
+	
+	/**
+	 * Method to calculate the amount of damage applied. 
+	 * Dmg = Base dmg + weapon dmg
+	 * If weapon lose durability, Dmg = Base dmg
+	 * Normal calculation like this is applied to bad guys.
+	 * @param target
+	 * @return quantity damage applied to the target based on the strength and the weapon's attack
+	 * method. 
+	 */
 	public int applyDamage(Character target) {
 		return (new Random().nextInt(strength) + this.weapon.attack());
 	}
+	
 	
 	public int attacks() {
 		return new Random().nextInt(strength);
@@ -220,6 +246,19 @@ public abstract class Character extends Entity {
 		}
 	}
 	
+	/**
+	 * Method to carry out an attack.
+	 * Chooses the target that will receive the attack. 
+	 * Chooses the attack type based off which hero is being used. 
+	 * Prints out the attack that the hero is performing. 
+	 * Plays sound effects that correspond to the type of attack:
+	 * normal, special, and special with weapon. 
+	 * Else the character is not a hero and does not have different attack
+	 * types, sets the hit point of the target as the subtraction of the hitpoint. 
+	 * Separate sound effect is used for the bad guys. 
+	 * Transformation effects are applied to character and target. 
+	 * Update() method is called at the end of the method.
+	 */
 	public void performAttack() {
 		Character target = this.chooseTarget();
 		if (target == null) return;
@@ -358,6 +397,10 @@ public abstract class Character extends Entity {
 		
 	}
 	
+	/**
+	 * Chooses which attack type will be used. 
+	 * @param attackType
+	 */
 	public void setAttackType(AttackType attackType) {
 		this.attackType = attackType;
 	}

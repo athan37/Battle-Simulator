@@ -250,7 +250,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 	/**
 	 * Main game loop
-	 * We can repeat the loop update() data and repaint() components here
+	 * We can repeat the loop update() data and repaint() components here.
+	 * Uses a while loop to run for the duration of the game. Updates and repaints
+	 * while delta is greater or equal to 1. 
 	 */
 	@Override
 	public void run() {

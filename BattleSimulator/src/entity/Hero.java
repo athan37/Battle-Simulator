@@ -8,6 +8,17 @@ import static constant.GameConstant.*;
 import java.util.Random;
 
 public class Hero extends Character {
+	
+	/**
+	 * Constructor for the Hero
+	 * @param gp
+	 * @param name
+	 * @param strength
+	 * @param hitPoint
+	 * @param mana
+	 * @param weapon
+	 * @param characterSet
+	 */
 	public Hero(GamePanel gp, String name, int strength, int hitPoint, int mana, Weapon weapon, int [] characterSet) {
 		super(gp, name, strength, hitPoint, characterSet);
 		this.weapon = weapon;
@@ -16,6 +27,10 @@ public class Hero extends Character {
 		this.spriteEnd  = this.spriteStart + 3; //Exclusive
 	}
 	
+	/**
+	 * For each hero, the messages tell the user which keys correspond to which attack type. 
+	 * Then, the method setGameState() is called as is update(). 
+	 */
 	public void displaySelectAttack() {
 		gp.getUi().setMessage("Hero name: " + this.getName() + "\n" 
 				+ "(Q) Normal attack \n"
@@ -52,6 +67,13 @@ public class Hero extends Character {
 		return (new Random().nextInt(strength) + this.weapon.attack());
 	}
 
+	/**
+	 * Special method for the hero to attack with the weapon.
+	 * Necessitates a mana of 20 in order to attack. 
+	 * If the mana is greater than 20, subtracts 20 from the mana and then returns
+	 * this.attacks() + this.weapon.attack() 
+	 * If the mana is not greater than 20, simply returns this.attacks()
+	 */
 	public int attacksWithWeapon() {
 		int manaRequired = 20;
 		if (this.getMana() >= manaRequired)  {
@@ -62,6 +84,13 @@ public class Hero extends Character {
 		}
 	}
 
+	/**
+	 * Special method for the hero to use a special attack with a weapon.
+	 * The required mana is 40. 
+	 * If mana > 40, subtracts 40 from the mana and then returns an attack with weapon and 
+	 * additional damage. 
+	 * If mana is not greater than 40, returns a normal attack. 
+	 */
 	public int specAttackWithWeapon() {
 		int manaRequired = 40;
 		//Basically attack twice

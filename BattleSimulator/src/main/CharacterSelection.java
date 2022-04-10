@@ -83,6 +83,9 @@ public class CharacterSelection extends JPanel implements Runnable {
 		});
 	}
 	
+	/**
+	 * Sets up an array list that corresponds to the avatars being used and their positions. 
+	 */
 	public void setUpDefaultAvatars() {
 		this.characterAvatar = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
@@ -90,6 +93,9 @@ public class CharacterSelection extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * Sets up a hash map for the given character positions. 
+	 */
 	public void setUpAllCharacterPositions() {
 		allCharacterPosition = new HashMap<>();
 		//Set up hash map. Basically generate all permutations with 2 for loops
@@ -102,6 +108,9 @@ public class CharacterSelection extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * Sets up the weapon buttons for weapon selection. 
+	 */
 	public void setUpWeaponButtons() {
 		//3 for 3 heros
 		this.heroWeapons = new String[]{"Melee", "Melee", "Melee"};
@@ -179,6 +188,9 @@ public class CharacterSelection extends JPanel implements Runnable {
 		return ims;
 	}
 	
+	/**
+	 * Sets the positions for all of the buttons. 
+	 */
 	public void setUpButtons() {
 		buttons = new JButton[6];
 		for (int i = 0; i < 6; i++) {
@@ -231,6 +243,15 @@ public class CharacterSelection extends JPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * Draws the panel that has the characters on it. 
+	 * Accepts g2, x and y values, and the int array that corresponds
+	 * to each character's position. 
+	 * @param g2
+	 * @param x
+	 * @param y
+	 * @param characterImgPosition
+	 */
 	public void drawCharacterCard(Graphics2D g2, int x, int y, int[] characterImgPosition) {
 		int startX = x , startY = y + TILE_SIZE;
 		int 
@@ -264,6 +285,11 @@ public class CharacterSelection extends JPanel implements Runnable {
 		drawCharacterSelectionPanel(g2);
 	}
 	
+	/**
+	 * Sets up the panel for the character selection screen.
+	 * This panel allows the user to select the characters and weapons. 
+	 * @param g2
+	 */
 	public void drawCharacterSelectionPanel(Graphics2D g2) {
 		
 		//Make sure the back ground is empty
