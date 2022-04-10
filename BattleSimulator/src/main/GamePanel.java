@@ -296,6 +296,17 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 	
+	public BufferedImage loadBackground(String filepath) {
+		try {
+			BufferedImage im = ImageIO.read(getClass().getResource(filepath));
+			return im;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	/**
 	 * Sets the graphics for the game. 
 	 */
@@ -303,6 +314,7 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setBackground(Color.white);
+		g2.drawImage(loadBackground("/background/background1.jpg"), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, null);
 		g2.setColor(Color.WHITE);
 		
 		for (Character hero: heros)  {
