@@ -49,11 +49,11 @@ public abstract class Character extends Entity {
 	 * Each sprite has height 60px, and width 48 px
 	 * 32 characters, each character has 16 imgs
 	 * Free assets from https://noiracide.itch.io
-	 * @param filepath
-	 * @param row
-	 * @param col
+	 * @param filepath File path of the character images
+	 * @param row the row position of the character in the images
+	 * @param col the col position of the chracter in the images
 	 * @return An array of 12 sprite images
-	 * @throws IOException
+	 * @throws IOException Exception in files
 	 */
 	public  ArrayList<BufferedImage> loadCharactersImage(String filepath, int row, int col) throws IOException {
 		BufferedImage im = ImageIO.read(getClass().getResource(filepath));
@@ -100,7 +100,7 @@ public abstract class Character extends Entity {
 	}
 
 	/**
-	 * @param the mana to set
+	 * @param mana the mana to set
 	 */
 	public void setMana(int mana) {
 		this.mana = Math.max(mana, 0);
@@ -118,7 +118,7 @@ public abstract class Character extends Entity {
 	}
 
 	/**
-	 * @param the appliedEffects to set
+	 * @param appliedEffects to set
 	 */
 	public void setAppliedEffects(Queue<Shape> appliedEffects) {
 		this.appliedEffects = appliedEffects;
@@ -127,11 +127,11 @@ public abstract class Character extends Entity {
 	/**
 	 * Character constructor method. Sets the name, strength, hit points, and characterSet for the 
 	 * given character. Also sets their attack type and any applied effects. 
-	 * @param gp
-	 * @param name
-	 * @param strength
-	 * @param hitPoint
-	 * @param characterSet
+	 * @param gp game panel
+	 * @param name of the character
+	 * @param strength of the character
+	 * @param hitPoint of the character
+	 * @param characterSet character images
 	 */
 	public Character(GamePanel gp, String name, int strength, int hitPoint, int[] characterSet) {
 		super();
@@ -153,7 +153,7 @@ public abstract class Character extends Entity {
 	
 	/**
 	 * Applies transformation effects on the given character. 
-	 * @param target
+	 * @param target of this character
 	 */
 	public void transformationEffects(Character target) {
 		int oX = this.x; 
@@ -191,7 +191,7 @@ public abstract class Character extends Entity {
 	
 	/**
 	 * Create effect on the target, resets x and y of the target based on the effect. 
-	 * @param target
+	 * @param target the target of either hero or bad guy
 	 */
 	public void onTargetEffects(Character target) {
 		
@@ -217,7 +217,7 @@ public abstract class Character extends Entity {
 	 * Dmg = Base dmg + weapon dmg
 	 * If weapon lose durability, Dmg = Base dmg
 	 * Normal calculation like this is applied to bad guys.
-	 * @param target
+	 * @param target of either hero or badguy
 	 * @return quantity damage applied to the target based on the strength and the weapon's attack
 	 * method. 
 	 */
@@ -396,7 +396,7 @@ public abstract class Character extends Entity {
 	
 	/**
 	 * Chooses which attack type will be used. 
-	 * @param attackType
+	 * @param attackType of the hero
 	 */
 	public void setAttackType(AttackType attackType) {
 		this.attackType = attackType;
